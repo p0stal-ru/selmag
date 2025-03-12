@@ -1,0 +1,23 @@
+spring:
+  security:
+    user:
+      name: user
+      password: '{noop}123123123'
+      roles:
+        - SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/catalogue
+    username: catalogue
+    password: catalogue
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    schemas:
+      - public
+      - catalogue
+  jpa:
+    show-sql: true
+server:
+  port: 8081
+logging:
+  level:
+    sql: info
