@@ -5,12 +5,14 @@ import ag.selm.catalogue.entity.Product;
 import ag.selm.catalogue.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,8 @@ public class ProductsRestController {
     private final ProductService productService;
 
     @GetMapping
-    public Iterable<Product> findProducts(@RequestParam(name = "filter", required = false) String filter) {
+    public Iterable<Product> findProducts(@RequestParam(name = "filter", required = false) String filter, Principal principal) {
+        LoggerFactory.getLogger(ProductsRestController.class).info("Principal name: {}" ,  principal);
         return this.productService.findAllProducts(filter);
     }
 

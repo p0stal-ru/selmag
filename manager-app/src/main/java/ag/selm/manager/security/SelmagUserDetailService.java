@@ -27,8 +27,8 @@ public class SelmagUserDetailService implements UserDetailsService {
                         .authorities(user.getAuthorities().stream()
                                 .map(Authority::getAuthority)
                                 .map(SimpleGrantedAuthority::new)
-                                .toList())
+                                 .toList())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+                .orElseThrow(() -> new UsernameNotFoundException("User %s not found".formatted(username)));
     }
 }
