@@ -1,6 +1,5 @@
 package ag.selm.manager.security;
 
-import com.nimbusds.jose.proc.SecurityContext;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.http.HttpHeaders;
