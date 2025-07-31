@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class WebClientProductsClient implements ProductsClient {
+public class  WebClientProductsClient implements ProductsClient {
 
     private final WebClient webClient;
 
