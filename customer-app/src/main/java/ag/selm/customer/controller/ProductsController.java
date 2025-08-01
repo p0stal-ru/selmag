@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import reactor.core.publisher.Mono;
 
-import java.util.stream.Collectors;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("customer/products")
