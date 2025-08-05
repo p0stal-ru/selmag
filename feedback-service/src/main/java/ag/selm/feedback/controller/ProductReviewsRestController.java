@@ -41,15 +41,5 @@ public class ProductReviewsRestController {
                         .body(productReview));
     }
 
-    @ExceptionHandler(WebExchangeBindException.class)
-    public Mono<ResponseEntity<ProblemDetail>> handleWebExchangeBindException(WebExchangeBindException exception) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problemDetail.setProperty("errors", exception.getAllErrors().stream()
-                .map(MessageSourceResolvable::getDefaultMessage)
-                .toList());
 
-        return Mono.just(ResponseEntity.badRequest()
-                .contentType(MediaType.APPLICATION_PROBLEM_JSON)
-                .body(problemDetail));
-    }
 }
