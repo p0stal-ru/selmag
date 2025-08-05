@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("feedback-api/favourite-product")
+@RequestMapping("feedback-api/favourite-products")
 @RequiredArgsConstructor
 public class FavoriteProductsRestController {
 

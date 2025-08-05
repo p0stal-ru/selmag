@@ -8,6 +8,7 @@ import ag.selm.customer.controller.payload.NewProductReviewPayload;
 import ag.selm.customer.entity.Product;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import java.util.NoSuchElementException;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("customer/products/{productId:\\d+}")
+@Slf4j
 public class ProductController {
 
     private final ProductsClient productsClient;
@@ -54,7 +56,11 @@ public class ProductController {
         return productMono
                 .map(Product::id)
                 .flatMap(productId -> this.favouriteProductsClient.addProductToFavourites(productId)
-                        .thenReturn("redirect:/customer/products/%d".formatted(productId)));
+                        .thenReturn("redirect:/customer/products/%d".formatted(productId))
+                        .onErrorResume(exception -> {
+                            log.error(exception.getMessage(), exception);
+                            return Mono.just("redirect:/customer/products/%d".formatted(productId));
+                        }));
     }
 
     @PostMapping("remove-from-favourites")
