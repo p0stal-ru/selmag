@@ -6,6 +6,9 @@ import ag.selm.feedback.service.ProductReviewsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSourceResolvable;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
@@ -23,9 +26,12 @@ public class ProductReviewsRestController {
 
     private final ProductReviewsService productReviewsService;
 
+//    private final ReactiveMongoTemplate reactiveMongoTemplate;
+
     @GetMapping("by-productId={productId}")//     ?productId={productId} / by-productId={productId}
     public Flux<ProductReview> findProductReviewsByProductId(@PathVariable("productId") int productId) {
         return productReviewsService.findProductReviewsByProduct(productId);
+//        return reactiveMongoTemplate.find(Query.query(Criteria.where("productId").is(productId)), ProductReview.class);
     }
 
     @PostMapping
