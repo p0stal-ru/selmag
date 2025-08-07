@@ -19,7 +19,7 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
 
     @Override
     public Flux<FavouriteProduct> findFavouriteProducts() {
-        return webClient
+        return this.webClient
                 .get()
                 .uri("/feedback-api/favourite-products")
                 .retrieve()
@@ -28,7 +28,7 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
 
     @Override
     public Mono<FavouriteProduct> findFavouriteProductByProductId(int productId) {
-        return webClient
+        return this.webClient
                 .get()
                 .uri("/feedback-api/favourite-products/by-product-id/{productId}", productId)
                 .retrieve()
@@ -38,7 +38,7 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
 
     @Override
     public Mono<FavouriteProduct> addProductToFavourites(int productId) {
-        return webClient
+        return this.webClient
                 .post()
                 .uri("/feedback-api/favourite-products")
                 .bodyValue(new NewFavouriteProductPayload(productId))
@@ -52,9 +52,9 @@ public class WebClientFavouriteProductsClient implements FavouriteProductsClient
 
     @Override
     public Mono<Void> removeProductFromFavourites(int productId) {
-        return webClient
+        return this.webClient
                 .delete()
-                .uri("feedback-api/favourite-products/by-product-id/{productId}", productId)
+                .uri("/feedback-api/favourite-products/by-product-id/{productId}", productId)
                 .retrieve()
                 .toBodilessEntity()
                 .then();

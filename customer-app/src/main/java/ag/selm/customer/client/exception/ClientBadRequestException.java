@@ -13,8 +13,8 @@ public class ClientBadRequestException extends RuntimeException {
 
     private final List<String> errors;
 
-    public ClientBadRequestException(Throwable cause, List<String> errorMessages) {
+    public ClientBadRequestException(Throwable cause, List<String> errors) {
         super(cause);
-        this.errors = errorMessages;
+        this.errors = errors;
     }
 }

@@ -6,15 +6,12 @@ import ag.selm.customer.client.ProductsClient;
 import ag.selm.customer.client.exception.ClientBadRequestException;
 import ag.selm.customer.controller.payload.NewProductReviewPayload;
 import ag.selm.customer.entity.Product;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
 import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -29,11 +26,7 @@ public class ProductController {
 
     private final ProductsClient productsClient;
 
-//    private final FavouriteProductsService favouriteProductsService;
-
     private final FavouriteProductsClient favouriteProductsClient;
-
-//    private final ProductReviewsService productReviewsService;
 
     private final ProductReviewsClient productReviewsClient;
 
@@ -78,17 +71,16 @@ public class ProductController {
     public Mono<String> createReview(@PathVariable("productId") int id,
                                      NewProductReviewPayload payload,
                                      Model model) {
-            return this.productReviewsClient.createProductReview(id, payload.rating(), payload.review())
-                    .thenReturn("redirect:/customer/products/%d".formatted(id))
-                    .onErrorResume(ClientBadRequestException.class, exception -> {
-                        model.addAttribute("inFavourite", false);
-                        model.addAttribute("payload", payload);
-                        model.addAttribute("errors", exception.getErrors());
-                        return this.favouriteProductsClient.findFavouriteProductByProductId(id)
-                                .doOnNext(favouriteProduct -> model.addAttribute("inFavourite", true))
-                                .thenReturn("customer/products/product");
-                    });
-
+        return this.productReviewsClient.createProductReview(id, payload.rating(), payload.review())
+                .thenReturn("redirect:/customer/products/%d".formatted(id))
+                .onErrorResume(ClientBadRequestException.class, exception -> {
+                    model.addAttribute("inFavourite", false);
+                    model.addAttribute("payload", payload);
+                    model.addAttribute("errors", exception.getErrors());
+                    return this.favouriteProductsClient.findFavouriteProductByProductId(id)
+                            .doOnNext(favouriteProduct -> model.addAttribute("inFavourite", true))
+                            .thenReturn("customer/products/product");
+                });
     }
 
     @ExceptionHandler(NoSuchElementException.class)

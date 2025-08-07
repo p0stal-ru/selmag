@@ -1,4 +1,4 @@
 package ag.selm.customer.client.payload;
 
-public record NewFavouriteProductPayload(Integer productId) {
+public record NewFavouriteProductPayload(int productId) {
 }

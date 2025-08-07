@@ -18,6 +18,7 @@ spring:
           keycloak:
             client-id: customer-app
             client-secret: G2GpmTKQR59U5gAHNcgvC3GeCNN8jmo8
+            authorization-grant-type: authorization_code
             scope:
               - openid
               - view_catalogue

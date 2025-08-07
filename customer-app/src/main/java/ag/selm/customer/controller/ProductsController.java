@@ -18,8 +18,6 @@ public class ProductsController {
 
     private final ProductsClient productsClient;
 
-//    private final FavouriteProductsService favouriteProductsService;
-
     private final FavouriteProductsClient favouriteProductsClient;
 
     @GetMapping("list")
@@ -28,8 +26,7 @@ public class ProductsController {
         model.addAttribute("filter", filter);
         return this.productsClient.findAllProducts(filter)
                 .collectList()
-//                .collect(Collectors.toList())
-                .doOnNext(products -> model.addAttribute( "products", products))
+                .doOnNext(products -> model.addAttribute("products", products))
                 .thenReturn("customer/products/list");
     }
 
@@ -37,14 +34,13 @@ public class ProductsController {
     public Mono<String> getFavouriteProductsPage(Model model,
                                                  @RequestParam(name = "filter", required = false) String filter) {
         model.addAttribute("filter", filter);
-        return this.favouriteProductsClient.findFavouriteProducts()    // Сначала пы получаем список избранных товаров, которые у на есть
-                .map(FavouriteProduct::productId)// Преобразуем в список индентификаторов товаров
-                .collectList()// flux собираем в список Mono, затем с помощью flatmap объединяем текущий стрим с новым стримом,
-                // который возвращает на список товаров из каталога
+        return this.favouriteProductsClient.findFavouriteProducts()
+                .map(FavouriteProduct::productId)
+                .collectList()
                 .flatMap(favouriteProducts -> this.productsClient.findAllProducts(filter)
-                        .filter(product -> favouriteProducts.contains(product.id())) // фильтруем, проверяя, что товар добавлен в список избранного
-                        .collectList()// собираем список товаров, который был добавлен в избранное
-                        .doOnNext(products -> model.addAttribute("products", products))) // И возвращаем его в атрибут модели products
+                        .filter(product -> favouriteProducts.contains(product.id()))
+                        .collectList()
+                        .doOnNext(products -> model.addAttribute("products", products)))
                 .thenReturn("customer/products/favourites");
     }
 }

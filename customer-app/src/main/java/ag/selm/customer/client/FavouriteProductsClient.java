@@ -1,7 +1,6 @@
 package ag.selm.customer.client;
 
 import ag.selm.customer.entity.FavouriteProduct;
-import ag.selm.customer.entity.ProductReview;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -15,4 +14,3 @@ public interface FavouriteProductsClient {
 
     Mono<Void> removeProductFromFavourites(int productId);
 }
-

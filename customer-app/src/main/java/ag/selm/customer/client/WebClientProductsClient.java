@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class  WebClientProductsClient implements ProductsClient {
+public class WebClientProductsClient implements ProductsClient {
 
     private final WebClient webClient;
 
@@ -21,7 +21,7 @@ public class  WebClientProductsClient implements ProductsClient {
     }
 
     @Override
-    public Mono<Product> findProduct(Integer id) {
+    public Mono<Product> findProduct(int id) {
         return this.webClient.get()
                 .uri("/catalogue-api/products/{productId}", id)
                 .retrieve()

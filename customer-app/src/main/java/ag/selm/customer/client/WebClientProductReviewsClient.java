@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-
 @RequiredArgsConstructor
 public class WebClientProductReviewsClient implements ProductReviewsClient {
 
@@ -20,19 +19,18 @@ public class WebClientProductReviewsClient implements ProductReviewsClient {
 
     @Override
     public Flux<ProductReview> findProductReviewsByProductId(Integer productId) {
-        return webClient
+        return this.webClient
                 .get()
-                .uri("feedback-api/product-reviews/by-product-id/{productId}", productId)
+                .uri("/feedback-api/product-reviews/by-product-id/{productId}", productId)
                 .retrieve()
                 .bodyToFlux(ProductReview.class);
     }
 
     @Override
     public Mono<ProductReview> createProductReview(Integer productId, Integer rating, String review) {
-
-        return webClient
+        return this.webClient
                 .post()
-                .uri("feedback-api/product-reviews")
+                .uri("/feedback-api/product-reviews")
                 .bodyValue(new NewProductReviewPayload(productId, rating, review))
                 .retrieve()
                 .bodyToMono(ProductReview.class)

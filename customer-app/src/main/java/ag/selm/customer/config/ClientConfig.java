@@ -23,9 +23,8 @@ public class ClientConfig {
     ) {
         ServerOAuth2AuthorizedClientExchangeFilterFunction filter =
                 new ServerOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
-                authorizedClientRepository);
+                        authorizedClientRepository);
         filter.setDefaultClientRegistrationId("keycloak");
-
         return WebClient.builder()
                 .filter(filter);
     }
@@ -42,11 +41,11 @@ public class ClientConfig {
 
     @Bean
     public WebClientFavouriteProductsClient webClientFavouriteProductsClient(
-            @Value("${selmag.services.feedback.uri:http://localhost:8084}") String catalogueBaseUrl,
+            @Value("${selmag.services.feedback.uri:http://localhost:8084}") String feedbackBaseUrl,
             WebClient.Builder selmagServicesWebClientBuilder
     ) {
         return new WebClientFavouriteProductsClient(selmagServicesWebClientBuilder
-                .baseUrl(catalogueBaseUrl)
+                .baseUrl(feedbackBaseUrl)
                 .build());
     }
 
