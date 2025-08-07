@@ -1,10 +1,10 @@
 package ag.selm.feedback.controller;
 
-import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.support.WebExchangeBindException;
@@ -17,7 +17,7 @@ public class ExceptionHandlingControllerAdvice {
     public Mono<ResponseEntity<ProblemDetail>> handleWebExchangeBindException(WebExchangeBindException exception) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setProperty("errors", exception.getAllErrors().stream()
-                .map(MessageSourceResolvable::getDefaultMessage)
+                .map(ObjectError::getDefaultMessage)
                 .toList());
 
         return Mono.just(ResponseEntity.badRequest()
