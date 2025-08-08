@@ -29,7 +29,10 @@ public class SecurityBeans {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        // Правила Spring security для доступа к swagger
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "swagger-ui/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/catalogue-api/products")
                         .hasAuthority("SCOPE_edit_catalogue")
                         .requestMatchers(HttpMethod.PATCH, "/catalogue-api/products/{productId:\\d}")
