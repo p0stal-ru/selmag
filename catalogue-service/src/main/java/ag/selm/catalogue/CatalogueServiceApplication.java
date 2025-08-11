@@ -20,23 +20,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 }
         ))
 )
-
+---------------------------------------------------------------------------------------------------
  */
 
-//@SecurityScheme(
-//        name = "keycloak",
-//        type = SecuritySchemeType.OAUTH2,
-//        flows = @OAuthFlows(authorizationCode = @OAuthFlow(
-//                authorizationUrl = "${keycloak.uri}/realms/selmag/protocol/openid-connect/auth",
-//                tokenUrl = "${keycloak.uri}/realms/selmag/protocol/openid-connect/token",
-//                scopes = {
-//                        @OAuthScope(name = "openid"),
-//                        @OAuthScope(name = "microprofile-jwt"),
-//                        @OAuthScope(name = "edit_catalogue"),
-//                        @OAuthScope(name = "view_catalogue")
-//                }
-//        ))
-//)
+
 
 @SpringBootApplication
 public class CatalogueServiceApplication {

@@ -5,6 +5,7 @@ spring:
 #      password: '{noop}123123123'
 #      roles:
 #        - SERVICE
+
   datasource:
     url: jdbc:postgresql://localhost:5432/catalogue
     username: catalogue
@@ -21,16 +22,54 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8082/realms/selmag
+#       Настройка spring security для клиента
+      client:
+        registration:
+          keycloak:
+            client-id: catalogue-service-metrics-client
+            client-secret: 7wCBlsx73STmdxoNrhcsCP1rAKBCTzuG
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/selmag
+
+
+#Настройки для Spring Admin server
+  boot:
+    admin:
+      client:
+        enabled: true
+        instance:
+          name: catalogue-service
+          service-host-type: ip
+        url: http://localhost:8085
 
 server:
   port: 8081
 logging:
   level:
     sql: info
+
+#    Настройки для swagger
 springdoc:
   swagger-ui:
     oauth:
       client-id: catalogue-service-swagger-ui
       use-pkce-with-authorization-code-grant: true
+
 keycloak:
   uri: http://localhost:8082
+
+#   Настройка Spring Admin server для отображения большей информации, сервиса который является клиентским
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

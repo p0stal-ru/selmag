@@ -17,10 +17,14 @@ public class SecurityBeans {
                         //Права для доступа swagger
                         .pathMatchers("/webjars/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
                             .permitAll()
+                        //Права доступа для Spring Admin server
+                        .pathMatchers("/actuator/**").hasAuthority("SCOPE_metrics")
                         .anyExchange().authenticated())
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
                 .oauth2ResourceServer(customizer -> customizer.jwt(Customizer.withDefaults()))
+                // И так же, так как мы поставили зависимость security Client, нужно прописать настройки по дефолту
+                .oauth2Client(Customizer.withDefaults())
                 .build();
     }
 }
