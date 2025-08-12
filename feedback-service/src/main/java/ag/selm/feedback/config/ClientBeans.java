@@ -26,6 +26,7 @@ public class ClientBeans {
                 new ServerOAuth2AuthorizedClientExchangeFilterFunction(
                         new AuthorizedClientServiceReactiveOAuth2AuthorizedClientManager(clientRegistrationRepository,
                                 authorizedClientService));
+
         filter.setDefaultClientRegistrationId("keycloak");
 
         return new ReactiveRegistrationClient(WebClient.builder()
