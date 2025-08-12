@@ -31,7 +31,7 @@ spring:
             scope:
               - openid
               - view_catalogue
-#          Правила безопасности keycloak для Admin service
+#          Правила безопасности keycloak для Admin service123
           metrics:
             provider: keycloak
             client-id: customer-app-metrics-client
