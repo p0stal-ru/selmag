@@ -42,7 +42,7 @@ spring:
 #      Правила OAuth2 server для доступа Admin service
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8082/realms/selmag
+          issuer-uri: http://172.17.0.1:8082/realms/selmag
 #Менеджер для отображения метрик
 management:
   health:

@@ -21,7 +21,7 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     oauth2:
       client_id: victoria-metrics
-      client_secret: vTpeB59Sb2Qzh0HI4cXBlewm2ivY0dzD
+      client_secret: r2IoQlo1i30PgKHvMFHY2a8Ys6Ds7S1Q
       token_url: http://172.17.0.1:8082/realms/selmag/protocol/openid-connect/token
       scopes:
         - metrics
@@ -35,7 +35,7 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     oauth2:
       client_id: victoria-metrics
-      client_secret: vTpeB59Sb2Qzh0HI4cXBlewm2ivY0dzD
+      client_secret: r2IoQlo1i30PgKHvMFHY2a8Ys6Ds7S1Q
       token_url: http://172.17.0.1:8082/realms/selmag/protocol/openid-connect/token
       scopes:
         - metrics
@@ -49,7 +49,7 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     oauth2:
       client_id: victoria-metrics
-      client_secret: vTpeB59Sb2Qzh0HI4cXBlewm2ivY0dzD
+      client_secret: r2IoQlo1i30PgKHvMFHY2a8Ys6Ds7S1Q
       token_url: http://172.17.0.1:8082/realms/selmag/protocol/openid-connect/token
       scopes:
         - metrics
@@ -63,7 +63,7 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     oauth2:
       client_id: victoria-metrics
-      client_secret: vTpeB59Sb2Qzh0HI4cXBlewm2ivY0dzD
+      client_secret: r2IoQlo1i30PgKHvMFHY2a8Ys6Ds7S1Q
       token_url: http://172.17.0.1:8082/realms/selmag/protocol/openid-connect/token
       scopes:
         - metrics
