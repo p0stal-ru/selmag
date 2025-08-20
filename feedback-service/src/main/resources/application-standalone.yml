@@ -17,20 +17,20 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://172.17.0.1:8082/realms/selmag
+          issuer-uri: http://host.docker.internal:8082/realms/selmag
 
       #       Настройка spring security для клиента
       client:
         registration:
           keycloak:
-            client-id: feedback-service-metrics-client
-            client-secret: w3BgAIdKpO23ayPTifeJevOwSSwMg0HQ
+            client-id: feedback-service
+            client-secret: 4cD79sTpV318BqiIWWUYsfjywdzg4DeK
             authorization-grant-type: client_credentials
             scope:
               - metrics_server
         provider:
           keycloak:
-            issuer-uri: http://localhost:8082/realms/selmag
+            issuer-uri: http://host.docker.internal:8082/realms/selmag
 springdoc:
   swagger-ui:
     oauth:

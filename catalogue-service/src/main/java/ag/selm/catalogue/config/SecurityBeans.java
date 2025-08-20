@@ -41,6 +41,7 @@ public class SecurityBeans {
                         .hasAuthority("SCOPE_edit_catalogue")
                         .requestMatchers("/actuator/**")
                         .hasAuthority("SCOPE_metrics")
+//                        .permitAll()
                         .requestMatchers(HttpMethod.GET)
                         .hasAuthority("SCOPE_view_catalogue")
                         .anyRequest().denyAll())

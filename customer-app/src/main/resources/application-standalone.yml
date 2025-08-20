@@ -21,12 +21,12 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8082/realms/selmag
+            issuer-uri: http://host.docker.internal:8082/realms/selmag
             user-name-attribute: preferred_username
         registration:
           keycloak:
             client-id: customer-app
-            client-secret: G2GpmTKQR59U5gAHNcgvC3GeCNN8jmo8
+            client-secret: M1bhGCByxWDqVWeokJj6Z9sMGTI41lNc
             authorization-grant-type: authorization_code
             scope:
               - openid
@@ -34,15 +34,15 @@ spring:
 #          Правила безопасности keycloak для Admin service123
           metrics:
             provider: keycloak
-            client-id: customer-app-metrics-client
-            client-secret: caq4sqjW29dkNwNMJ94gYkRv0O3ie0Pz
+            client-id: customer-app
+            client-secret: M1bhGCByxWDqVWeokJj6Z9sMGTI41lNc
             authorization-grant-type: client_credentials
             scope:
               - metrics_server
 #      Правила OAuth2 server для доступа Admin service
       resourceserver:
         jwt:
-          issuer-uri: http://172.17.0.1:8082/realms/selmag
+          issuer-uri: http://host.docker.internal:8082/realms/selmag
 #Менеджер для отображения метрик
 management:
   health:

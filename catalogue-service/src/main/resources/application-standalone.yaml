@@ -21,19 +21,19 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8082/realms/selmag
+          issuer-uri: http://host.docker.internal:8082/realms/selmag
 #       Настройка spring security для клиента
       client:
         registration:
           keycloak:
-            client-id: catalogue-service-metrics-client
-            client-secret: 7wCBlsx73STmdxoNrhcsCP1rAKBCTzuG
+            client-id: catalogue-service
+            client-secret: LWRWGTNOni7xr9oIh52Wt6bS9jRcQy6Q
             authorization-grant-type: client_credentials
             scope:
               - metrics_server
         provider:
           keycloak:
-            issuer-uri: http://localhost:8082/realms/selmag
+            issuer-uri: http://host.docker.internal:8082/realms/selmag
 
 
 #Настройки для Spring Admin server

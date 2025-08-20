@@ -19,6 +19,7 @@ public class SecurityConfig {
         return http
                 .securityMatcher(pathMatchers("/actuator/**"))
                 .authorizeExchange(customizer -> customizer.pathMatchers("/actuator/**")
+//                        .permitAll())
                         .hasAuthority("SCOPE_metrics"))
                 .oauth2ResourceServer(customizer -> customizer.jwt(Customizer.withDefaults()))
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
