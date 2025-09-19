@@ -33,7 +33,7 @@ spring:
               - metrics_server
         provider:
           keycloak:
-            issuer-uri: http://host.docker.internal:8082/realms/selmag
+            issuer-uri: http://localhost:8082/realms/selmag
 
 
 #Настройки для Spring Admin server
