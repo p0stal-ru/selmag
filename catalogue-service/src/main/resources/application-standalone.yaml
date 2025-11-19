@@ -1,5 +1,7 @@
 spring:
-#  security:
+  application:
+    name: selmag-catalogue-service
+  #  security:
 #    user:
 #      name: user
 #      password: '{noop}123123123'
@@ -73,3 +75,11 @@ management:
     web:
       exposure:
         include: '*'
+
+    #        Настройка трассировок для zipkin
+    zipkin:
+      tracing:
+        endpoint: http://host.docker.internal:9411/api/v2/spans
+    tracing:
+      sampling:
+        probability: 1.0

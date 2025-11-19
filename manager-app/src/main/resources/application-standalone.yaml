@@ -9,6 +9,9 @@ selmag:
 #      password: 123123123
 
 spring:
+  application:
+    name: selmag-manager-app
+
   boot:
     admin:
       client:

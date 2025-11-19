@@ -1,6 +1,8 @@
 server:
   port: 8084
 spring:
+  application:
+    name: selmag-feedback-service
 #  Настройки для Spring Admin server
   boot:
     admin:
@@ -50,3 +52,11 @@ management:
     web:
       exposure:
         include: '*'
+
+    #        Настройка трассировок для zipkin
+    zipkin:
+      tracing:
+        endpoint: http://host.docker.internal:9411/api/v2/spans
+    tracing:
+      sampling:
+        probability: 1.0
