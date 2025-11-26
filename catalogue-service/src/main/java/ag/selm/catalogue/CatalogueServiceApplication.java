@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.security.OAuthScope;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /*--------Перенесен в класс config.SpringDocBeans-------------------------------------------------
 @SecurityScheme(
         name = "keycloak",
@@ -24,7 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class CatalogueServiceApplication {
 

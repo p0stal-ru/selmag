@@ -131,6 +131,11 @@
             <artifactId>datasource-micrometer-spring-boot</artifactId>
             <version>1.0.3</version>
         </dependency>
+        <!--        Eureka client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
 
 
