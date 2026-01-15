@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: selmag-feedback-service
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      uri: http://config:config@localhost:8888

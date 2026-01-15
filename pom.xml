@@ -16,6 +16,8 @@
         <module>feedback-service</module>
         <module>admin-server</module>
         <module>eureka-server</module>
+        <module>config-server</module>
+        <module>api-gateway</module>
     </modules>
 
     <properties>

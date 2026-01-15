@@ -1,0 +1,98 @@
+spring:
+
+#  Убираем!
+#  application:
+#    name: selmag-catalogue-service
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/catalogue
+    username: catalogue
+    password: catalogue
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    schemas:
+      - public
+      - catalogue
+  jpa:
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://host.docker.internal:8082/realms/selmag
+      #       Настройка spring security для клиента
+      client:
+        registration:
+          keycloak:
+            client-id: catalogue-service
+            client-secret: LWRWGTNOni7xr9oIh52Wt6bS9jRcQy6Q
+            authorization-grant-type: client_credentials
+            scope:
+              - metrics_server
+          #        Настройка для авторизации в Eureka
+          discovery:
+            provider: keycloak
+            client-id: catalogue-service
+            client-secret: LWRWGTNOni7xr9oIh52Wt6bS9jRcQy6Q
+            authorization-grant-type: client_credentials
+            scope:
+              - discovery
+
+        provider:
+          keycloak:
+            issuer-uri: http://host.docker.internal:8082/realms/selmag
+
+
+  #Настройки для Spring Admin server
+  boot:
+    admin:
+      client:
+        enabled: false
+#        instance:
+#          name: catalogue-service
+#          service-host-type: ip
+#        url: http://localhost:8085
+
+server:
+  port: 8081
+logging:
+  level:
+    sql: info
+
+#    Настройки для swagger
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: catalogue-service-swagger-ui
+      use-pkce-with-authorization-code-grant: true
+
+keycloak:
+  uri: http://localhost:8082
+
+#   Настройка Spring Admin server для отображения большей информации, сервиса который является клиентским
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+    #        Настройка трассировок для zipkin
+    zipkin:
+      tracing:
+        endpoint: http://host.docker.internal:9411/api/v2/spans
+    tracing:
+      sampling:
+        probability: 1.0
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

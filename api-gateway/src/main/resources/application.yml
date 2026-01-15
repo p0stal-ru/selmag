@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: catalogue-service-route
+          uri:
+            http://localhost:8081
+          predicates:
+            - Host=catalogue.api.selm.ag
+server:
+  port: 8086
+  forward-headers-strategy: framework
